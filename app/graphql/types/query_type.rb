@@ -19,5 +19,33 @@ module Types
     def user(id:)
       User.find(id)
     end
+
+    # Get all branches
+    field :branches, [Types::BranchType], null: false
+    def branches
+      Branch.all
+    end
+
+    # Get a specific branch
+    field :branch, Types::BranchType, null: false do
+      argument :id, ID, required: true
+    end
+    def branch(id:)
+      Branch.find(id)
+    end
+
+    # Get all students
+    field :students, [Types::StudentType], null: false
+    def students
+      Student.all
+    end
+
+    # Get a specific student
+    field :student, Types::StudentType, null: false do
+      argument :id, ID, required: true
+    end
+    def student(id:)
+      Student.find(id)
+    end
   end
 end
