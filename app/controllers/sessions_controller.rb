@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# Devise Sessions Controller
 class SessionsController < Devise::SessionsController
   respond_to :json
-  
+
   private
 
   def respond_with(resource, _opts = {})

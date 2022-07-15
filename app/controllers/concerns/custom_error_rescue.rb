@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Custom Error Module Handler
 module CustomErrorRescue
   extend ActiveSupport::Concern
 

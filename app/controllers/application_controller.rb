@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
+# Main Application Controller
 class ApplicationController < ActionController::API
   before_action :authenticate_user!
-  # rescue_from ::ActiveRecord::RecordNotFound, with: :record_not_found
-  # rescue_from Exception, with: :error_occurred
-  # rescue_from ::ActionController::RoutingError, with: :record_not_found
 
   include CustomErrorRescue
 
@@ -31,16 +31,14 @@ class ApplicationController < ActionController::API
     message = "No route matches #{request.method.upcase} #{params[:unmatched_route]}"
     render json: { errors: { title: message } }, status: :not_found
   end
-  
+
   protected
 
-  def record_not_found(exception)
-    render json: {error: "No record found for requested resource"}, status: 404
-    return
+  def record_not_found(_exception)
+    render json: { error: 'No record found for requested resource' }, status: 404
   end
 
-  def error_occurred(exception)
-    render json: {error: "An error occured in the system."}.to_json, status: 500
-    return
+  def error_occurred(_exception)
+    render json: { error: 'An error occured in the system.' }.to_json, status: 500
   end
 end
